@@ -1,33 +1,39 @@
 package com.udb.ml190272sl190836desafio03dsm104
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.udb.ml190272sl190836desafio03dsm104.adapters.ListVerbsAdapter
+import com.udb.ml190272sl190836desafio03dsm104.db.DbVerbs
+import com.udb.ml190272sl190836desafio03dsm104.entidades.Verbs
+//import com.udb.testjava.adaptadores.ListaContactosAdapter
+//import com.udb.ml190272sl190836desafio03dsm104.db.DbVerbs
+//import com.udb.testjava.entidades.Contactos
+import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var btnCrear: Button
+    private lateinit var listVerbs: RecyclerView
+    private lateinit var listArrayVerbs: ArrayList<Verbs>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btnCrear = findViewById(R.id.Crear)
 
-        btnCrear.setOnClickListener {
-            val dbHelper = DbHelper(this@MainActivity)
-            val db = dbHelper.writableDatabase
-            if (db != null) {
-                Toast.makeText(this@MainActivity, "BASE DE DATOS CREADA", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this@MainActivity, "ERROR AL CREAR BASE DE DATOS", Toast.LENGTH_LONG).show()
-            }
-        }
+        listVerbs = findViewById(R.id.listVerbs)
+        listVerbs.layoutManager = LinearLayoutManager(this)
+
+        val dbVerbs = DbVerbs(this)
+
+        listArrayVerbs = ArrayList()
+
+       val adapter = ListVerbsAdapter(dbVerbs.showVerbs())
+        listVerbs.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -51,3 +57,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+

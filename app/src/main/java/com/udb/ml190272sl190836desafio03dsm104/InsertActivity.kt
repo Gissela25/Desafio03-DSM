@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.udb.ml190272sl190836desafio03dsm104.db.DbVerbs
 
 
 class InsertActivity : AppCompatActivity() {
