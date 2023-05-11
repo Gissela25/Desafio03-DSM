@@ -1,11 +1,14 @@
 package com.udb.ml190272sl190836desafio03dsm104.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.udb.ml190272sl190836desafio03dsm104.R
+import com.udb.ml190272sl190836desafio03dsm104.ShowActivity
 import com.udb.ml190272sl190836desafio03dsm104.entidades.Verbs
 
 //import com.udb.testjava.R
@@ -49,5 +52,16 @@ class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) :
         val viewImp_Tu: TextView = itemView.findViewById(R.id.viewImp_Tu)
         val viewImp_Nosotros: TextView = itemView.findViewById(R.id.viewImp_Nosotros)
         val viewImp_Ellos_Ellas_Ustedes: TextView = itemView.findViewById(R.id.viewImp_Ellos_Ellas_Ustedes)
+
+        init {
+            itemView.setOnClickListener {
+                val context: Context = itemView.context
+                val intent = Intent(context, ShowActivity::class.java)
+                intent.putExtra("ID", listaVerbs[adapterPosition].id)
+                context.startActivity(intent)
+            }
+        }
+
+
     }
 }

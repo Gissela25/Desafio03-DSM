@@ -88,4 +88,34 @@ class DbVerbs(@Nullable context: Context?) : DbHelper(context) {
 
         return listVerbs
     }
+
+    fun showVerb(id: Int): Verbs? {
+        val dbHelper = DbHelper(context)
+        val db = dbHelper.writableDatabase
+
+        var verb: Verbs? = null
+        var cursorVerbs: Cursor? = null
+
+        cursorVerbs = db.rawQuery("SELECT * FROM $TABLE_VERBOS WHERE id = $id LIMIT 1", null)
+
+        if (cursorVerbs.moveToFirst()) {
+            verb = Verbs()
+            verb.id = cursorVerbs.getInt(0)
+            verb.Verbo = cursorVerbs.getString(1)
+            verb.Ind_Yo = cursorVerbs.getString(2)
+            verb.Ind_Tu = cursorVerbs.getString(3)
+            verb.Ind_El_Ella_Usted = cursorVerbs.getString(4)
+            verb.Ind_Nosotros = cursorVerbs.getString(5)
+            verb.Ind_Vosotros = cursorVerbs.getString(6)
+            verb.Ind_Ellos = cursorVerbs.getString(7)
+            verb.Imp_Tu = cursorVerbs.getString(8)
+            verb.Imp_Nosotros = cursorVerbs.getString(9)
+            verb.Imp_Ellos_Ellas_Ustedes = cursorVerbs.getString(10)
+        }
+
+        cursorVerbs.close()
+
+        return verb
+    }
+
 }
