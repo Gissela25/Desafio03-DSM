@@ -26,7 +26,7 @@ class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) :
     override fun onBindViewHolder(holder: ContactoViewHolder, position: Int) {
         val verb = listaVerbs[position]
         holder.viewVerbo.text = verb.Verbo
-        holder.viewInd_Yo.text = verb.Ind_Yo
+ /*       holder.viewInd_Yo.text = verb.Ind_Yo
         holder.viewInd_Tu.text = verb.Ind_Tu
         holder.viewInd_El_Ella_Usted.text = verb.Ind_El_Ella_Usted
         holder.viewInd_Nosotros.text = verb.Ind_Nosotros
@@ -34,7 +34,7 @@ class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) :
         holder.viewInd_Ellos.text = verb.Ind_Ellos
         holder.viewImp_Tu.text = verb.Imp_Tu
         holder.viewImp_Nosotros.text = verb.Imp_Nosotros
-        holder.viewImp_Ellos_Ellas_Ustedes.text = verb.Imp_Ellos_Ellas_Ustedes
+        holder.viewImp_Ellos_Ellas_Ustedes.text = verb.Imp_Ellos_Ellas_Ustedes*/
     }
 
     override fun getItemCount(): Int {
@@ -43,7 +43,7 @@ class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) :
 
     inner class ContactoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val viewVerbo: TextView = itemView.findViewById(R.id.viewVerbo)
-        val viewInd_Yo: TextView = itemView.findViewById(R.id.viewInd_Yo)
+       /* val viewInd_Yo: TextView = itemView.findViewById(R.id.viewInd_Yo)
         val viewInd_Tu: TextView = itemView.findViewById(R.id.viewInd_Tu)
         val viewInd_El_Ella_Usted: TextView = itemView.findViewById(R.id.viewInd_El_Ella_Usted)
         val viewInd_Nosotros: TextView = itemView.findViewById(R.id.viewInd_Nosotros)
@@ -51,7 +51,7 @@ class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) :
         val viewInd_Ellos: TextView = itemView.findViewById(R.id.viewInd_Ellos)
         val viewImp_Tu: TextView = itemView.findViewById(R.id.viewImp_Tu)
         val viewImp_Nosotros: TextView = itemView.findViewById(R.id.viewImp_Nosotros)
-        val viewImp_Ellos_Ellas_Ustedes: TextView = itemView.findViewById(R.id.viewImp_Ellos_Ellas_Ustedes)
+        val viewImp_Ellos_Ellas_Ustedes: TextView = itemView.findViewById(R.id.viewImp_Ellos_Ellas_Ustedes)*/
 
         init {
             itemView.setOnClickListener {

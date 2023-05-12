@@ -118,4 +118,37 @@ class DbVerbs(@Nullable context: Context?) : DbHelper(context) {
         return verb
     }
 
+    fun editVerb(id: Int, Verbo: String, Ind_Yo: String, Ind_Tu: String, Ind_El_Ella_Usted: String, Ind_Nosotros: String, Ind_Vosotros: String, Ind_Ellos: String, Imp_Tu: String, Imp_Nosotros: String, Imp_Ellos_Ellas_Ustedes: String): Boolean {
+        var correcto = false
+
+        val dbHelper = DbHelper(context)
+        val db = dbHelper.getWritableDatabase()
+
+        try {
+            val values = ContentValues()
+            values.put("Verbo", Verbo)
+            values.put("Ind_Yo", Ind_Yo)
+            values.put("Ind_Tu", Ind_Tu)
+            values.put("Ind_El_Ella_Usted", Ind_El_Ella_Usted)
+            values.put("Ind_Nosotros", Ind_Nosotros)
+            values.put("Ind_Vosotros", Ind_Vosotros)
+            values.put("Ind_Ellos", Ind_Ellos)
+            values.put("Imp_Tu", Imp_Tu)
+            values.put("Imp_Nosotros", Imp_Nosotros)
+            values.put("Imp_Ellos_Ellas_Ustedes", Imp_Ellos_Ellas_Ustedes)
+
+            db.update(TABLE_VERBOS, values, "id = ?", arrayOf(id.toString()))
+            correcto = true
+        } catch (ex: Exception) {
+            ex.toString()
+            correcto = false
+        } finally {
+            db.close()
+        }
+
+        return correcto
+    }
+
+
+
 }
