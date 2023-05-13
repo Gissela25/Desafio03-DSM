@@ -94,7 +94,7 @@ class ShowActivity : AppCompatActivity() {
 
         btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(this@ShowActivity)
-            builder.setMessage("Desea eliminar este contacto?")
+            builder.setMessage("¿Desea eliminar este verbo?")
                 .setPositiveButton("SI") { dialog, which ->
                     if (dbVerbs.deleteVerb(id)) {
                         goToHome();
