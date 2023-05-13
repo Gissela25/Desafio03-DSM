@@ -69,39 +69,66 @@ class EditActivity : AppCompatActivity() {
             Imp_Tu.setText(verb.Imp_Tu)
             Imp_Nosotros.setText(verb.Imp_Nosotros)
             Imp_Ellos_Ellas_Ustedes.setText(verb.Imp_Ellos_Ellas_Ustedes)
-           /* btnSave.visibility = View.INVISIBLE
-            et_verb.inputType = InputType.TYPE_NULL
-            Ind_Yo.inputType = InputType.TYPE_NULL
-            Ind_Tu.inputType = InputType.TYPE_NULL
-            Ind_El_Ella_Usted.inputType = InputType.TYPE_NULL
-            Ind_Nosotros.inputType = InputType.TYPE_NULL
-            Ind_Vosotros.inputType = InputType.TYPE_NULL
-            Ind_Ellos.inputType = InputType.TYPE_NULL
-            Imp_Tu.inputType = InputType.TYPE_NULL
-            Imp_Nosotros.inputType = InputType.TYPE_NULL
-            Imp_Ellos_Ellas_Ustedes.inputType = InputType.TYPE_NULL*/
         }
 
         btnSave.setOnClickListener {
-            if (!et_verb.text.toString().isEmpty() && !Ind_Yo.text.toString().isEmpty() && !Ind_Tu.text.toString().isEmpty()) {
-                val correcto = dbVerbs.editVerb(id, et_verb.text.toString(), Ind_Yo.text.toString(), Ind_Tu.text.toString(), Ind_El_Ella_Usted.text.toString(), Ind_Nosotros.text.toString(), Ind_Vosotros.text.toString(), Ind_Ellos.text.toString(), Imp_Tu.text.toString(), Imp_Nosotros.text.toString(), Imp_Ellos_Ellas_Ustedes.text.toString())
+            val verbText = et_verb.text.toString()
+            val indYoText = Ind_Yo.text.toString()
+            val indTuText = Ind_Tu.text.toString()
+            val indElText = Ind_El_Ella_Usted.text.toString()
+            val indNosotrosText = Ind_Nosotros.text.toString()
+            val indVosotrosText = Ind_Vosotros.text.toString()
+            val indEllosText = Ind_Ellos.text.toString()
+            val impTuText = Imp_Tu.text.toString()
+            val impNosotrosText = Imp_Nosotros.text.toString()
+            val impEllosText = Imp_Ellos_Ellas_Ustedes.text.toString()
+
+            if (isValidText(verbText) && isValidText(indYoText) && isValidText(indTuText) && isValidText(
+                    indElText
+                ) && isValidText(indNosotrosText) && isValidText(indVosotrosText) && isValidText(
+                    indEllosText
+                ) && isValidText(impTuText) && isValidText(impNosotrosText) && isValidText(
+                    impEllosText
+                )
+            ) {
+                val correcto = dbVerbs.editVerb(
+                    id, verbText, indYoText, indTuText, indElText, indNosotrosText,
+                    indVosotrosText, indEllosText, impTuText, impNosotrosText, impEllosText
+                )
 
                 if (correcto) {
-                    Toast.makeText(this@EditActivity, "Registro Modificado", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@EditActivity, "Registro Modificado", Toast.LENGTH_LONG)
+                        .show()
                     goToShow()
                 } else {
-                    Toast.makeText(this@EditActivity, "Error al modificar registro", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@EditActivity,
+                        "Error al modificar registro",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             } else {
-                Toast.makeText(this@EditActivity, "Debe llenar los campos obligatorios", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@EditActivity,
+                    "Ingrese datos válidos en todos los campos",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
+
     }
+
     private fun goToShow() {
         val intent = Intent(this, ShowActivity::class.java)
         intent.putExtra("ID", id)
         startActivity(intent)
     }
+
+    private fun isValidText(text: String): Boolean {
+        val pattern = Regex("^[a-zA-ZáéíóúñÁÉÍÓÚÑ]+$")
+        return text.isNotBlank() && pattern.matches(text)
+    }
+
 
 }
