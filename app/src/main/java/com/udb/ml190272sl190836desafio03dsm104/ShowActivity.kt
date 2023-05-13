@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.udb.ml190272sl190836desafio03dsm104.db.DbVerbs
 import com.udb.ml190272sl190836desafio03dsm104.entidades.Verbs
 
@@ -27,6 +28,7 @@ class ShowActivity : AppCompatActivity() {
     private lateinit var Imp_Nosotros: TextView
     private lateinit var Imp_Ellos_Ellas_Ustedes: TextView
     private lateinit var btnEdit: Button
+    private lateinit var btnDelete: Button
 
     private lateinit var verb: Verbs
     private var id = 0
@@ -37,6 +39,7 @@ class ShowActivity : AppCompatActivity() {
 
         et_verb = findViewById(R.id.et_verb)
         btnEdit = findViewById(R.id.btngoToEdit)
+        btnDelete = findViewById(R.id.btngoToDelete)
         Ind_Yo = findViewById(R.id.Ind_Yo)
         Ind_Tu = findViewById(R.id.Ind_Tu)
         Ind_El_Ella_Usted = findViewById(R.id.Ind_El_Ella_Usted)
@@ -88,6 +91,20 @@ class ShowActivity : AppCompatActivity() {
         btnEdit.setOnClickListener {
             goToEdit()
         }
+
+        btnDelete.setOnClickListener {
+            val builder = AlertDialog.Builder(this@ShowActivity)
+            builder.setMessage("Desea eliminar este contacto?")
+                .setPositiveButton("SI") { dialog, which ->
+                    if (dbVerbs.deleteVerb(id)) {
+                        goToHome();
+                    }
+                }
+                .setNegativeButton("No") { dialog, which ->
+
+                }
+                .show()
+        }
     }
 
     private fun goToEdit() {
@@ -95,5 +112,11 @@ class ShowActivity : AppCompatActivity() {
         intent.putExtra("ID", id)
         startActivity(intent)
     }
+
+    private fun goToHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
 
 }

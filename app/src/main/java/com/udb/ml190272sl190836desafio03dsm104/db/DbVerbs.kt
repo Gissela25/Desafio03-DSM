@@ -149,6 +149,26 @@ class DbVerbs(@Nullable context: Context?) : DbHelper(context) {
         return correcto
     }
 
+    fun deleteVerb(id: Int): Boolean {
+        var correcto = false
+
+        val dbHelper = DbHelper(context)
+        val db = dbHelper.writableDatabase
+
+        try {
+            db.execSQL("DELETE FROM $TABLE_VERBOS WHERE id = '$id'")
+            correcto = true
+        } catch (ex: Exception) {
+            ex.toString()
+            correcto = false
+        } finally {
+            db.close()
+        }
+
+        return correcto
+    }
+
+
 
 
 }
