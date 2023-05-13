@@ -17,17 +17,17 @@ import java.util.ArrayList
 import java.util.List
 import java.util.stream.Collectors
 
-class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) : RecyclerView.Adapter<ListVerbsAdapter.ContactoViewHolder>() {
+class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) : RecyclerView.Adapter<ListVerbsAdapter.VerbsViewHolder>() {
 
     // VideoS
     private val listaOriginal: ArrayList<Verbs> = ArrayList(listaVerbs)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactoViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerbsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_verb, parent, false)
-        return ContactoViewHolder(view)
+        return VerbsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ContactoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VerbsViewHolder, position: Int) {
         val verb = listaVerbs[position]
         holder.viewVerbo.text = verb.Verbo
         /*       holder.viewInd_Yo.text = verb.Ind_Yo
@@ -62,7 +62,7 @@ class ListVerbsAdapter(private val listaVerbs: ArrayList<Verbs>) : RecyclerView.
         return listaVerbs.size
     }
 
-    inner class ContactoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class VerbsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val viewVerbo: TextView = itemView.findViewById(R.id.viewVerbo)
         /* val viewInd_Yo: TextView = itemView.findViewById(R.id.viewInd_Yo)
          val viewInd_Tu: TextView = itemView.findViewById(R.id.viewInd_Tu)
